@@ -9,6 +9,10 @@ import { Component } from '@angular/core';
 
 export class ProductListComponent{
   pageTitle :string ='Product List!';
+  imageWidth :number = 50;
+  imageMargin :number = 2;
+  showImage:boolean = false;
+  listFilter:string = 'cart';
   products:any[]=[
     {
       "productId": 1,
@@ -26,7 +30,7 @@ export class ProductListComponent{
       "productCode": "GDN-0023",
       "releaseDate": "March 18, 2019",
       "description": "15 gallon capacity rolling garden cart",
-      "price": 32.99,
+      "price": 32.95,
       "starRating": 4.2,
       "imageUrl": "assets/images/garden_cart.png"
     },
@@ -61,5 +65,10 @@ export class ProductListComponent{
       "imageUrl": "assets/images/xbox-controller.png"
     }
   ];
+
+  toggleImage():void{
+    this.showImage = !this.showImage
+  }
+
 }
 
