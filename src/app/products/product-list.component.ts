@@ -3,17 +3,22 @@ import { IProduct } from './product';
 import { ProductService } from './product.service';
 
 @Component({
-    selector: 'pm-products',
-    templateUrl: './product-list.component.html',
-    styleUrls: ['./product-list.component.css']
+  selector: 'pm-products',
+  templateUrl: './product-list.component.html',
+  styleUrls: ['./product-list.component.css']
 })
 
 export class ProductListComponent implements OnInit {
   ngOnInit(): void {
-    this.products = this.productService.getProducts();
-    this.filterProducts = this.products;
-  
+    this.productService.getProducts().subscribe({
+      next: products => {
+        this.products = products
+        this.filterProducts = this.products;
+      },
+      error: err => this.errorMessage = err
+    });
   }
+  errorMessage: string;
   pageTitle: string = 'Product List!';
   imageWidth: number = 50;
   imageMargin: number = 2;
@@ -29,17 +34,17 @@ export class ProductListComponent implements OnInit {
   filterProducts: IProduct[];
   products: IProduct[] = [];
 
-  constructor(private productService:ProductService) {
-  
+  constructor(private productService: ProductService) {
+
   }
 
-  onRatingClicked(message:string):void{
+  onRatingClicked(message: string): void {
     this.pageTitle = 'Product List : ' + message;
   }
-  performFilter(filterBy:string):IProduct[]{
+  performFilter(filterBy: string): IProduct[] {
     filterBy = filterBy.toLocaleLowerCase();
-    return this.products.filter((product:IProduct)=>
-    product.productName.toLocaleLowerCase().indexOf(filterBy) !== -1);
+    return this.products.filter((product: IProduct) =>
+      product.productName.toLocaleLowerCase().indexOf(filterBy) !== -1);
   }
 
   toggleImage(): void {
