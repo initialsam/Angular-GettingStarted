@@ -1,13 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { IProduct } from './product';
 
-@Component(
-  {
+@Component({
     selector: 'pm-products',
     templateUrl: './product-list.component.html',
     styleUrls: ['./product-list.component.css']
-  }
-)
+})
 
 export class ProductListComponent implements OnInit {
   ngOnInit(): void {
@@ -83,6 +81,10 @@ export class ProductListComponent implements OnInit {
     this.filterProducts = this.products;
     this.listFilter = 'cart';
     
+  }
+
+  onRatingClicked(message:string):void{
+    this.pageTitle = 'Product List : ' + message;
   }
   performFilter(filterBy:string):IProduct[]{
     filterBy = filterBy.toLocaleLowerCase();
