@@ -1,1 +1,46 @@
-<p>product-list works!</p>
+<div class="card">
+  <div class="card-header">
+    {{ pageTitle }}
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-2">Filter by:</div>
+      <div class="col-md-4">
+        <input type="text" />
+      </div>
+    </div>
+    <div class="row" *ngIf="listFilter">
+      <div class="col-md-6">
+        <h4>Filtered by:</h4>
+      </div>
+    </div>
+    <div class="table-responsive">
+      <table class="table" *ngIf="products && products.length">
+        <thead>
+          <tr>
+            <th>
+              <button class="btn btn-primary">
+                showImage
+              </button>
+            </th>
+            <th>Product</th>
+            <th>Code</th>
+            <th>Available</th>
+            <th>Price</th>
+            <th>5 Star Rating</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of products">
+            <td></td>
+            <td>{{ item.productName }}</td>
+            <td>{{ item.productCode }}</td>
+            <td>{{ item.releaseDate }}</td>
+            <td>{{ item.price }}</td>
+            <td>{{ item.starRating }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
