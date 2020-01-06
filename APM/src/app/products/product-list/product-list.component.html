@@ -36,7 +36,7 @@
               <img
                 *ngIf="showImage"
                 [src]="item.imageUrl"
-                title="name is {{ item.p }}"
+                title="name is {{ item.productName }}"
                 [style.width.px]="imageWidth"
                 [style.margin.px]="imageMargin"
               />
@@ -47,7 +47,7 @@
             </td>
             <td>{{ item.releaseDate | date: "yyyy/MM/dd" }}</td>
             <td>{{ item.price | currency: "USD":"symbol":"1.2-2" }}</td>
-            <td>{{ item.starRating }}</td>
+            <td><app-star [rating]="item.starRating"></app-star></td>
           </tr>
         </tbody>
       </table>
